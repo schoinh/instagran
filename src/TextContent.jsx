@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import Comment from './Comment';
 import { Link } from 'react-router-dom';
 
-function TextContent() {
+function TextContent(props) {
   var TextContentStyles = {
     width: "570px",
     borderBottomStyle: "solid",
@@ -14,8 +16,15 @@ function TextContent() {
   return (
     <div style={TextContentStyles}>
       <b>jschneidereit</b> You've never heard of the Millennium Falcon?
+      <p>
+        {props.commentList.map((comment) => <Comment commentText={comment.commentText} key={comment.id} />)}
+      </p>
     </div>
   );
 }
+
+TextContent.propTypes = {
+  commentList: PropTypes.array
+};
 
 export default TextContent;
